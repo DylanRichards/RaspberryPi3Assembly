@@ -1,13 +1,18 @@
 EXES=sum01 sum02
+
+ASFLAGS	= -g -march=armv8-a
+AS		= as
+CC		= gcc
+
 all: $(EXES)
 
 %: %.o
-	gcc -o $@ $+
+	$(CC) -o $@ $+
 
 % : %.s
 
 %.o : %.s
-	as -o $@ $<
+	$(AS) $(ASFLAGS) -o $@ $<
 
 .PHONY: clean
 clean:

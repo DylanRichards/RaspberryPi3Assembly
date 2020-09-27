@@ -2,8 +2,7 @@
 .global main
 
 main:
-    mov r0, #3
-    mov r1, #4
-    add r0, r0, r1  /* r0 ← r1 + r2 */
-    bx lr
-
+    mov x0, #3
+    mov x1, #4
+    add x0, x0, x1  /* x0 ← x1 + x2 */
+    ret
