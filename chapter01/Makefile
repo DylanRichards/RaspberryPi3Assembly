@@ -1,12 +1,17 @@
 ASM_FILE=first.s
 
+# Flags
+ASFLAGS	= -g -march=armv8-a
+AS		= as
+CC		= gcc
+
 all: first
 
 first: first.o
-	gcc -o $@ $+
+	$(CC) -o $@ $+
 
 first.o : first.s
-	as -o $@ $<
+	$(AS) $(ASFLAGS) -o $@ $<
 
 clean:
 	rm -vf first *.o
