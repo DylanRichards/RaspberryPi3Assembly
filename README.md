@@ -1,4 +1,4 @@
-raspberry-pi-assembler
+Raspberry Pi 3 Assembler
 ======================
 
 Support files for the blog posts on Raspberry Pi Assembler
