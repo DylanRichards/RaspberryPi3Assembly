@@ -3,14 +3,14 @@
 .text
 .global main
 main:
-    mov r1, #0       /* r1 ← 0 */
-    mov r2, #1       /* r2 ← 1 */
+    mov x1, #0       /* x1 ← 0 */
+    mov x2, #1       /* x2 ← 1 */
 loop: 
-    cmp r2, #22      /* compare r2 and 22 */
-    bgt end          /* branch if r2 > 22 to end */
-    add r1, r1, r2   /* r1 ← r1 + r1 */
-    add r2, r2, #1   /* r2 ← r2 + 1 */
+    cmp x2, #22      /* compare x2 and 22 */
+    bgt end          /* branch if x2 > 22 to end */
+    add x1, x1, x2   /* x1 ← x1 + x2 */
+    add x2, x2, #1   /* x2 ← x2 + 1 */
     b loop
 end:
-    mov r0, r1       /* r0 ← r1 */
-    bx lr
+    mov x0, x1       /* x0 ← x1 */
+    ret

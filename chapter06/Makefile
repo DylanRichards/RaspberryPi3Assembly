@@ -1,14 +1,18 @@
 EXES=loop01 loop02 collatz
 OBJS=$(addsuffix .o, $(EXES))
+ASFLAGS= -g -march=armv8-a
+AS=as
+CC=gcc
+
 all: $(EXES) $(OBJS)
 
 %: %.o
-	gcc -o $@ $+
+	$(CC) -o $@ $+
 
 % : %.s
 
 %.o : %.s
-	as -o $@ $<
+	$(AS) $(ASFLAGS) -o $@ $<
 
 .PHONY: clean
 clean:
