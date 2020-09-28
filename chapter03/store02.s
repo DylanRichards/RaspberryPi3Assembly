@@ -14,7 +14,7 @@ myvar1:
 .balign 4
 /* Define storage for myvar2 */
 myvar2:
-    /* Contents of myvar2 is just '3' */
+    /* Contents of myvar2 is just '4' */
     .word 4
 
 /* Ensure variable is 4-byte aligned */
@@ -31,27 +31,22 @@ myvar3:
 .balign 4
 .global main
 main:
-    ldr r1, addr_of_myvar1 /* r1 ← &myvar1 */
-    ldr r1, [r1]           /* r1 ← *r1 */
-    ldr r2, addr_of_myvar2 /* r2 ← &myvar2 */
-    ldr r2, [r2]           /* r1 ← *r2 */
-    add r3, r1, r2         /* r3 ← r1 + r2 */
-    ldr r4, addr_of_myvar3 /* r4 ← &myvar3 */
-    str r3, [r4]           /* *r4 ← r3 */
+    adr x1, myvar1  /* x1 ← &myvar1 */
+    ldr x1, [x1]    /* x1 ← *x1 */
+    adr x2, myvar2  /* x2 ← &myvar2 */
+    ldr x2, [x2]    /* x1 ← *x2 */
+    add x3, x1, x2  /* x3 ← x1 + x2 */
+    adr x4, myvar3  /* x4 ← &myvar3 */
+    str x3, [x4]    /* *x4 ← x3 */
     /* Clear registers to prove that
        we are actually something
        previously stored */
-    mov r0, #0             /* r0 ← 0 */
-    mov r1, #0             /* r1 ← 0 */
-    mov r2, #0             /* r2 ← 0 */
-    mov r3, #0             /* r3 ← 0 */
-    mov r4, #0             /* r4 ← 0 */
+    mov x0, #0      /* x0 ← 0 */
+    mov x1, #0      /* x1 ← 0 */
+    mov x2, #0      /* x2 ← 0 */
+    mov x3, #0      /* x3 ← 0 */
+    mov x4, #0      /* x4 ← 0 */
     
-    ldr r0, addr_of_myvar3
-    ldr r0, [r0]
-    bx lr
-
-/* Labels needed to access data */
-addr_of_myvar1 : .word myvar1
-addr_of_myvar2 : .word myvar2
-addr_of_myvar3 : .word myvar3
+    adr x0, myvar3
+    ldr x0, [x0]
+    ret
