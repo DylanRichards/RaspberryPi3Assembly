@@ -3,17 +3,16 @@
 .data
 
 .balign 4
-value: 
-.int 0x12345678
+value: .int 0x12345678
 
 .global main
 .text
 main:
-    ldr r1, .Lcvalue
-    ldr r1, [r1]
-    mov r1, r1, ROL #1
-    mov r1, r1, ROL #31
+    ldr x1, =value
+    ldr w1, [x1]
+    mov w1, w1, ROR #1  /* rotate right 1 bit*/
+    mov w1, w1, ROR #31 /* rotate right 31 bits */
 
-    eor r0, r0, r0
-    bx lr
-.Lcvalue: .word value
+    eor x0, x0, x0      /* bitwise exclusive or */
+    ret
+
