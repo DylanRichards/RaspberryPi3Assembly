@@ -11,17 +11,15 @@ b: .skip 8
 
 .global main
 main:
-    ldr r1, addr_of_a       /* r1 ← &a */
-    mov r2, #0              /* r2 ← 0 */
+    ldr x1, =a              /* x1 ← &a */
+    mov x2, #0              /* x2 ← 0 */
 loop:
-    cmp r2, #100            /* Have we reached 100 yet? */
+    cmp x2, #100            /* Have we reached 100 yet? */
     beq end                 /* If so, leave the loop, otherwise continue */
-    add r3, r1, r2, LSL #2  /* r3 ← r1 + r2 * 4 */
-    str r2, [r3]            /* *r3 ← r2 */
-    add r2, r2, #1          /* r2 ← r2 + 1 */
+    add x3, x1, x2, LSL #2  /* x3 ← x1 + x2 * 4 */
+    str x2, [x3]            /* *x3 ← x2 */
+    add x2, x2, #1          /* x2 ← x2 + 1 */
     b loop                  /* Go to the beginning of the loop */
 end:
-    bx lr
+    ret
 
-addr_of_a: .word a
-addr_of_b: .word b
